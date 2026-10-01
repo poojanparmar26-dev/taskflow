@@ -1,0 +1,18 @@
+[Unit]
+Description=TaskFlow Flask-SocketIO Production Application
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/taskflow
+EnvironmentFile=/var/www/taskflow/.env
+ExecStart=/var/www/taskflow/venv/bin/python -m backend.app
+Restart=always
+RestartSec=5s
+StandardOutput=append:/var/log/taskflow.log
+StandardError=append:/var/log/taskflow.err.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,17 @@
+:{$PORT} {
+    encode gzip zstd
+
+    handle /api/* {
+        reverse_proxy {$BACKEND_URL}
+    }
+
+    handle /socket.io/* {
+        reverse_proxy {$BACKEND_URL}
+    }
+
+    handle {
+        root * dist
+        try_files {path} /index.html
+        file_server
+    }
+}

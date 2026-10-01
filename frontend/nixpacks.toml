@@ -1,0 +1,9 @@
+# Nixpacks configuration for Frontend with Caddy reverse proxy
+[phases.setup]
+nixPkgs = ["caddy", "nodejs_20"]
+
+[phases.build]
+cmds = ["npm install", "npm run build"]
+
+[start]
+cmd = "caddy run --config Caddyfile --adapter caddyfile"
